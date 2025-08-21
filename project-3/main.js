@@ -37,6 +37,8 @@ function handleClick(e) {
   resultDiv.textContent = result;
 }
 
-document.getElementById('rock').addEventListener('click', handleClick);
-document.getElementById('paper').addEventListener('click', handleClick);
-document.getElementById('scissors').addEventListener('click', handleClick);
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('rock').addEventListener('click', handleClick);
+  document.getElementById('paper').addEventListener('click', handleClick);
+  document.getElementById('scissors').addEventListener('click', handleClick);
+});
