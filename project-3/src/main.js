@@ -41,7 +41,10 @@ function handleGuess(letter) {
   if (guessedLetters.includes(letter)) return;
 
   guessedLetters.push(letter);
-  document.querySelector(`button:contains('${letter}')`).disabled = true;
+  const buttonElement = document.querySelector(`button.key:not(:disabled):contains('${letter}')`);
+  if (buttonElement) {
+    buttonElement.disabled = true;
+  }
 
   if (selectedWord.includes(letter)) {
     updateWordDisplay();
