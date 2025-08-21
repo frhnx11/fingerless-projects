@@ -29,9 +29,9 @@ function dropCoin(col) {
   for (let row = 0; row < ROWS; row++) {
     if (!board[row][col]) {
       board[row][col] = currentPlayer;
-      updateCell(column.children[row]);
+      animateDrop(column.children[row], row);
       if (checkWin(row, col)) {
-        setTimeout(() => alert(`${currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)} wins!`), 100);
+        setTimeout(() => alert(`${currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)} wins!`), 600);
         return;
       }
       switchPlayer();
@@ -40,8 +40,13 @@ function dropCoin(col) {
   }
 }
 
-function updateCell(cell) {
-  cell.classList.add(currentPlayer);
+function animateDrop(cell, row) {
+  cell.classList.add(currentPlayer, 'animate');
+  cell.style.animationDelay = `${row * 0.1}s`;
+  cell.addEventListener('animationend', () => {
+    cell.classList.remove('animate');
+    cell.style.animationDelay = '';
+  }, { once: true });
 }
 
 function switchPlayer() {
