@@ -10,28 +10,21 @@ const resetButton = document.getElementById('reset');
 
 function createBoard() {
   board.innerHTML = '';
-  for (let col = 0; col < COLS; col++) {
-    const column = document.createElement('div');
-    column.className = 'column';
-    column.dataset.col = col;
-    
-    for (let row = ROWS - 1; row >= 0; row--) {
+  for (let row = ROWS - 1; row >= 0; row--) {
+    for (let col = 0; col < COLS; col++) {
       const cell = document.createElement('div');
       cell.className = 'cell';
       cell.dataset.row = row;
       cell.dataset.col = col;
-      column.appendChild(cell);
+      cell.addEventListener('click', () => handleClick(col));
+      board.appendChild(cell);
     }
-    
-    column.addEventListener('click', handleClick);
-    board.appendChild(column);
   }
 }
 
-function handleClick(e) {
+function handleClick(col) {
   if (gameOver) return;
   
-  const col = parseInt(e.currentTarget.dataset.col);
   const row = findEmptyRow(col);
   
   if (row !== -1) {
