@@ -1,3 +1,5 @@
+import confetti from 'canvas-confetti';
+
 const choices = ['rock', 'paper', 'scissors'];
 const resultDiv = document.getElementById('result');
 const userScoreSpan = document.getElementById('user-score');
@@ -22,12 +24,21 @@ function playRound(userChoice, computerChoice) {
   ) {
     userScore++;
     userScoreSpan.textContent = userScore;
+    triggerConfetti();
     return `You win! ${userChoice} beats ${computerChoice}`;
   } else {
     computerScore++;
     computerScoreSpan.textContent = computerScore;
     return `You lose! ${computerChoice} beats ${userChoice}`;
   }
+}
+
+function triggerConfetti() {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
 }
 
 function handleClick(e) {
