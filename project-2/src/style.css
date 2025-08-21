@@ -50,12 +50,26 @@ h1 {
   background-color: #e0e0e0;
 }
 
-.cell.x {
+.cell.x::before {
+  content: 'X';
   color: var(--primary-color);
 }
 
-.cell.o {
+.cell.o::before {
+  content: 'O';
   color: var(--secondary-color);
+}
+
+.board.x .cell:not(.x):not(.o):hover::before {
+  content: 'X';
+  color: var(--primary-color);
+  opacity: 0.5;
+}
+
+.board.o .cell:not(.x):not(.o):hover::before {
+  content: 'O';
+  color: var(--secondary-color);
+  opacity: 0.5;
 }
 
 .message {
