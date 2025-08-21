@@ -13,16 +13,10 @@ h1 {
 #game-board {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
+  gap: 5px;
   background-color: #0066cc;
   padding: 10px;
   border-radius: 10px;
-}
-
-.column {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 10px;
 }
 
 .cell {
@@ -31,43 +25,14 @@ h1 {
   background-color: white;
   border-radius: 50%;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
 }
 
-.cell::after {
-  content: '';
-  display: block;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  transition: background-color 0.3s ease;
-  position: absolute;
-  top: 5px;
-}
-
-.red::after {
+.red {
   background-color: red;
 }
 
-.blue::after {
+.blue {
   background-color: blue;
-}
-
-@keyframes dropCoin {
-  0% {
-    transform: translateY(-300px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.cell.animate::after {
-  animation: dropCoin 0.5s ease-in;
 }
 
 #turn-indicator {
