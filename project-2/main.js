@@ -1,3 +1,5 @@
+import confetti from 'canvas-confetti';
+
 const board = document.getElementById('board');
 const status = document.getElementById('status');
 const restartButton = document.getElementById('restart');
@@ -54,12 +56,14 @@ function checkResult() {
   if (roundWon) {
     status.textContent = `Player ${currentPlayer} wins!`;
     gameActive = false;
+    triggerConfetti();
     return;
   }
 
   if (!gameState.includes('')) {
     status.textContent = "It's a draw!";
     gameActive = false;
+    triggerConfetti();
     return;
   }
 
@@ -75,6 +79,14 @@ function restartGame() {
   document.querySelectorAll('.cell').forEach(cell => {
     cell.textContent = '';
     cell.classList.remove('x', 'o');
+  });
+}
+
+function triggerConfetti() {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 }
   });
 }
 
