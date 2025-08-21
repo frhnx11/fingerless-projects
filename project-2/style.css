@@ -36,6 +36,14 @@ body {
   cursor: pointer;
 }
 
+.cell.x {
+  color: red;
+}
+
+.cell.o {
+  color: purple;
+}
+
 #status {
   font-size: 1.2em;
   margin-bottom: 20px;
