@@ -35,6 +35,7 @@ function handleCellClick(e) {
 
   gameState[cellIndex] = currentPlayer;
   clickedCell.textContent = currentPlayer;
+  clickedCell.classList.add(currentPlayer.toLowerCase());
 
   checkResult();
 }
@@ -71,7 +72,10 @@ function restartGame() {
   gameState = ['', '', '', '', '', '', '', '', ''];
   gameActive = true;
   status.textContent = `Player ${currentPlayer}'s turn`;
-  document.querySelectorAll('.cell').forEach(cell => cell.textContent = '');
+  document.querySelectorAll('.cell').forEach(cell => {
+    cell.textContent = '';
+    cell.classList.remove('x', 'o');
+  });
 }
 
 createBoard();
