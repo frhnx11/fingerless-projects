@@ -8,23 +8,30 @@ const turnIndicator = document.getElementById('turn-indicator');
 
 function createBoard() {
   for (let col = 0; col < COLS; col++) {
+    const column = document.createElement('div');
+    column.className = 'column';
+    column.dataset.col = col;
+    column.addEventListener('click', () => dropCoin(col));
+    
     for (let row = 0; row < ROWS; row++) {
       const cell = document.createElement('div');
       cell.className = 'cell';
-      cell.dataset.col = col;
-      cell.addEventListener('click', () => dropCoin(col));
-      gameBoard.appendChild(cell);
+      cell.dataset.row = row;
+      column.appendChild(cell);
     }
+    
+    gameBoard.appendChild(column);
   }
 }
 
 function dropCoin(col) {
-  for (let row = ROWS - 1; row >= 0; row--) {
+  const column = gameBoard.children[col];
+  for (let row = 0; row < ROWS; row++) {
     if (!board[row][col]) {
       board[row][col] = currentPlayer;
-      updateCell(row, col);
+      animateDrop(column.children[row], row);
       if (checkWin(row, col)) {
-        setTimeout(() => alert(`${currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)} wins!`), 100);
+        setTimeout(() => alert(`${currentPlayer.charAt(0).toUpperCase() + currentPlayer.slice(1)} wins!`), 600);
         return;
       }
       switchPlayer();
@@ -33,10 +40,13 @@ function dropCoin(col) {
   }
 }
 
-function updateCell(row, col) {
-  const index = row * COLS + col;
-  const cell = gameBoard.children[index];
-  cell.classList.add(currentPlayer);
+function animateDrop(cell, row) {
+  cell.classList.add(currentPlayer, 'animate');
+  cell.style.animationDelay = `${row * 0.1}s`;
+  cell.addEventListener('animationend', () => {
+    cell.classList.remove('animate');
+    cell.style.animationDelay = '';
+  }, { once: true });
 }
 
 function switchPlayer() {
