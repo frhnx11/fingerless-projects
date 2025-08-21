@@ -19,6 +19,11 @@ function initializeBoard() {
         input.type = 'number';
         input.min = 1;
         input.max = 9;
+        input.addEventListener('input', function() {
+          if (this.value.length > 1) {
+            this.value = this.value.slice(0, 1);
+          }
+        });
         cell.appendChild(input);
       }
       board.appendChild(cell);
@@ -44,10 +49,10 @@ checkBtn.addEventListener('click', () => {
   const currentBoard = getCurrentBoard();
   if (isValidSudoku(currentBoard)) {
     message.textContent = 'Congratulations! Your solution is correct!';
-    message.style.color = 'green';
+    message.className = 'success';
   } else {
     message.textContent = 'Sorry, your solution is incorrect. Keep trying!';
-    message.style.color = 'red';
+    message.className = 'error';
   }
 });
 
