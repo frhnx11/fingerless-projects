@@ -41,7 +41,6 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -50,26 +49,38 @@ h1 {
   background-color: #e0e0e0;
 }
 
-.cell.x::before {
-  content: 'X';
-  color: var(--primary-color);
+.cell.circle::before {
+  content: '';
+  width: 70px;
+  height: 70px;
+  border: 10px solid var(--primary-color);
+  border-radius: 50%;
+  box-sizing: border-box;
 }
 
-.cell.o::before {
-  content: 'O';
-  color: var(--secondary-color);
+.cell.square::before {
+  content: '';
+  width: 70px;
+  height: 70px;
+  background-color: var(--secondary-color);
 }
 
-.board.x .cell:not(.x):not(.o):hover::before {
-  content: 'X';
-  color: var(--primary-color);
-  opacity: 0.5;
+.board.circle .cell:not(.circle):not(.square):hover::before {
+  content: '';
+  width: 70px;
+  height: 70px;
+  border: 10px solid var(--primary-color);
+  border-radius: 50%;
+  box-sizing: border-box;
+  opacity: 0.3;
 }
 
-.board.o .cell:not(.x):not(.o):hover::before {
-  content: 'O';
-  color: var(--secondary-color);
-  opacity: 0.5;
+.board.square .cell:not(.circle):not(.square):hover::before {
+  content: '';
+  width: 70px;
+  height: 70px;
+  background-color: var(--secondary-color);
+  opacity: 0.3;
 }
 
 .message {
