@@ -1,7 +1,7 @@
 import confetti from 'canvas-confetti';
 
-const X_CLASS = 'x';
-const O_CLASS = 'o';
+const CIRCLE_CLASS = 'circle';
+const SQUARE_CLASS = 'square';
 const WINNING_COMBINATIONS = [
   [0, 1, 2],
   [3, 4, 5],
@@ -18,17 +18,17 @@ const board = document.getElementById('board');
 const messageElement = document.getElementById('message');
 const restartButton = document.getElementById('restartButton');
 
-let isOTurn = false;
+let isSquareTurn = false;
 
 startGame();
 
 restartButton.addEventListener('click', startGame);
 
 function startGame() {
-  isOTurn = false;
+  isSquareTurn = false;
   cellElements.forEach(cell => {
-    cell.classList.remove(X_CLASS);
-    cell.classList.remove(O_CLASS);
+    cell.classList.remove(CIRCLE_CLASS);
+    cell.classList.remove(SQUARE_CLASS);
     cell.removeEventListener('click', handleClick);
     cell.addEventListener('click', handleClick, { once: true });
   });
@@ -38,7 +38,7 @@ function startGame() {
 
 function handleClick(e) {
   const cell = e.target;
-  const currentClass = isOTurn ? O_CLASS : X_CLASS;
+  const currentClass = isSquareTurn ? SQUARE_CLASS : CIRCLE_CLASS;
   placeMark(cell, currentClass);
   if (checkWin(currentClass)) {
     endGame(false);
@@ -55,16 +55,16 @@ function placeMark(cell, currentClass) {
 }
 
 function swapTurns() {
-  isOTurn = !isOTurn;
+  isSquareTurn = !isSquareTurn;
 }
 
 function setBoardHoverClass() {
-  board.classList.remove(X_CLASS);
-  board.classList.remove(O_CLASS);
-  if (isOTurn) {
-    board.classList.add(O_CLASS);
+  board.classList.remove(CIRCLE_CLASS);
+  board.classList.remove(SQUARE_CLASS);
+  if (isSquareTurn) {
+    board.classList.add(SQUARE_CLASS);
   } else {
-    board.classList.add(X_CLASS);
+    board.classList.add(CIRCLE_CLASS);
   }
 }
 
@@ -78,7 +78,7 @@ function checkWin(currentClass) {
 
 function isDraw() {
   return [...cellElements].every(cell => {
-    return cell.classList.contains(X_CLASS) || cell.classList.contains(O_CLASS);
+    return cell.classList.contains(CIRCLE_CLASS) || cell.classList.contains(SQUARE_CLASS);
   });
 }
 
@@ -86,13 +86,12 @@ function endGame(draw) {
   if (draw) {
     messageElement.textContent = 'Draw!';
   } else {
-    messageElement.textContent = `${isOTurn ? "O's" : "X's"} Wins!`;
+    messageElement.textContent = `${isSquareTurn ? "Squares" : "Circles"} Win!`;
   }
   cellElements.forEach(cell => {
     cell.removeEventListener('click', handleClick);
   });
   
-  // Trigger confetti effect
   triggerConfetti();
 }
 
