@@ -1,18 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 :root {
-  --bg-color: #f8e1e8; /* Pastel pink */
-  --text-color: #5d5d5d;
+  --bg-color: #ffd1dc; /* More vibrant pastel pink */
+  --text-color: #4a4a4a;
   --button-bg: #ffffff;
-  --button-hover: #e0f0ff; /* Light pastel blue */
-  --button-active: #d6e8ff;
-  --header-color: #b5d8ff; /* Pastel blue */
+  --button-hover: #b5e6ff; /* Lighter pastel blue */
+  --button-active: #a0d8ff;
+  --header-color: #87ceeb; /* Sky blue */
   --shadow-color: rgba(0, 0, 0, 0.1);
+  --gradient-1: #ffd1dc;
+  --gradient-2: #b5e6ff;
 }
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: var(--bg-color);
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
   color: var(--text-color);
   margin: 0;
   padding: 0;
@@ -20,19 +22,13 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: linear-gradient(45deg, var(--bg-color) 25%, transparent 25%),
-                    linear-gradient(-45deg, var(--bg-color) 25%, transparent 25%),
-                    linear-gradient(45deg, transparent 75%, var(--bg-color) 75%),
-                    linear-gradient(-45deg, transparent 75%, var(--bg-color) 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
 }
 
 .container {
   max-width: 500px;
   width: 90%;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 2rem;
   border-radius: 20px;
   box-shadow: 0 10px 30px var(--shadow-color);
@@ -40,20 +36,20 @@ body {
 
 header {
   margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid var(--header-color);
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--header-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 p {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 300;
+  color: #6a6a6a;
 }
 
 .link-button {
@@ -66,7 +62,7 @@ p {
   border-radius: 50px;
   font-weight: 400;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 5px var(--shadow-color);
+  box-shadow: 0 4px 10px var(--shadow-color);
   position: relative;
   overflow: hidden;
 }
@@ -93,7 +89,7 @@ p {
 
 .link-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px var(--shadow-color);
+  box-shadow: 0 6px 15px var(--shadow-color);
 }
 
 .link-button:active {
@@ -115,13 +111,15 @@ p {
     --button-active: #5a5a5a;
     --header-color: #b5d8ff;
     --shadow-color: rgba(0, 0, 0, 0.3);
-  }
-
-  body {
-    background-image: none;
+    --gradient-1: #3a1f2b;
+    --gradient-2: #1f3a4d;
   }
 
   .container {
-    background-color: rgba(58, 58, 58, 0.8);
+    background-color: rgba(58, 58, 58, 0.9);
+  }
+
+  p {
+    color: #d0d0d0;
   }
 }
