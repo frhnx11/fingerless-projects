@@ -1,0 +1,14 @@
+{
+  "id": "project-1755878891018-lhboc9v",
+  "name": "Full E-commerce Store Project",
+  "template": "ecommerce-full",
+  "createdAt": "2025-08-22T16:09:31.497Z",
+  "framework": "Next.js",
+  "features": [
+    "Product catalog",
+    "Shopping cart",
+    "Secure checkout",
+    "Payment integration",
+    "Order management"
+  ]
+}
